@@ -16,6 +16,7 @@ public class PageRankCalculatorTest {
     public void testMain() {
         Map<Integer, List<Integer>> pairs = readInTablePairs("pairs.txt");
         PageRankCalculator calc = new PageRankCalculator(pairs);
+        System.out.println(calc.getPageRankAfterIteration(100, 0.3f));
     }
 
     private List<String> readInLines(String fileName) {
@@ -35,6 +36,7 @@ public class PageRankCalculatorTest {
         }
         return lines;
     }
+
     private Map<Integer, List<Integer>> readInTablePairs(String fileName) {
         Map<Integer, List<Integer>> pairs = new HashMap<>();
         List<String> lines = readInLines(fileName);
@@ -49,10 +51,10 @@ public class PageRankCalculatorTest {
         Integer firstNode = Integer.valueOf(splitted[0]);
         Integer secondNode = Integer.valueOf(splitted[1]);
         if (!pairs.containsKey(firstNode)) {
-            pairs.put(firstNode, new ArrayList<Integer>());
+            pairs.put(firstNode, new ArrayList<>());
         }
         if (!pairs.containsKey(secondNode)) {
-            pairs.put(secondNode, new ArrayList<Integer>());
+            pairs.put(secondNode, new ArrayList<>());
         }
         pairs.get(firstNode).add(secondNode);
     }
