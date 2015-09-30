@@ -8,6 +8,7 @@ import java.util.*;
 
 public class LSHCalculatorTest {
 
+
     @Test
     public void test() {
         double[][] matrixData = new double[6][4];
@@ -23,6 +24,16 @@ public class LSHCalculatorTest {
 
         LSHCalculator calculator = new LSHCalculator();
         Assert.assertArrayEquals(new int[] {3,3,5,3}, calculator.getMinHash(matrix, permutation));
+    }
+
+    @Test
+    public void testJaccardSimialarity() {
+        String first = "ABRACADABRA";
+        String second = "BRICABRAC";
+
+        LSHCalculator calculator = new LSHCalculator();
+        double calculatedJaccardSimiliarity = calculator.calculateJaccardSimiliarity(first, second, 2);
+        Assert.assertEquals(5.0 / 9.0, calculatedJaccardSimiliarity, 0);
     }
 
     @Test

@@ -2,10 +2,33 @@ import org.apache.commons.math3.linear.RealMatrix;
 import org.apache.commons.math3.linear.RealVector;
 import org.apache.commons.math3.util.Pair;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class LSHCalculator {
+    public double calculateJaccardSimiliarity(String first, String second, int shingleLength) {
+        Set<String> firstShingles = getShingles(first, shingleLength);
+        Set<String> secondShingles = getShingles(second, shingleLength);
+
+
+        Set<String> union = new HashSet<>(firstShingles);
+        union.addAll(secondShingles);
+        int unionSize = union.size();
+
+        Set<String> intersection = new HashSet<>(firstShingles);
+        intersection.retainAll(secondShingles);
+        int intersectionSize = intersection.size();
+
+        return (double) intersectionSize / unionSize;
+    }
+
+    private Set<String> getShingles(String input, int shingleLength) {
+        Set<String> shingles = new HashSet<>();
+        for (int i = 0; i < input.length() - shingleLength + 1; i++) {
+            shingles.add(input.substring(i, i + shingleLength));
+        }
+        return shingles;
+    }
+
     public List<Pair<Integer, Integer>> findCandidatePairs(RealMatrix signatures, int rowsPerBand) {
         List<Pair<Integer, Integer>> candidatePairs = new ArrayList<>();
 
