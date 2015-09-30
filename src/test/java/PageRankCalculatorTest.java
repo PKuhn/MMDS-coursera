@@ -2,10 +2,6 @@ import org.junit.Test;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.charset.Charset;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.*;
 
 import static org.junit.Assert.*;
@@ -14,9 +10,9 @@ public class PageRankCalculatorTest {
 
     @Test
     public void testMain() {
-        Map<Integer, List<Integer>> pairs = readInTablePairs("pairs.txt");
+        Map<Integer, List<Integer>> pairs = readInTablePairs("question2.txt");
         PageRankCalculator calc = new PageRankCalculator(pairs);
-        System.out.println(calc.getPageRankAfterIteration(100, 0.3f));
+        System.out.println(calc.getPageRankAfterIteration(100, 0.15));
     }
 
     private List<String> readInLines(String fileName) {

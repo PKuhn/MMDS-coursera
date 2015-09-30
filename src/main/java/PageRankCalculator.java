@@ -17,7 +17,7 @@ public class PageRankCalculator {
 
     }
 
-    public RealVector getPageRankAfterIteration(int maxIteration, float randomTeleportProp) {
+    public RealVector getPageRankAfterIteration(int maxIteration, double randomTeleportProp) {
         RealMatrix propMatrix = getInitialMatrix(randomTeleportProp);
         RealVector rankVector = getInitialRankVector(this.nodeCount);
         for (int iteration = 0; iteration < maxIteration; iteration++) {
@@ -41,7 +41,7 @@ public class PageRankCalculator {
     private RealVector getRandomJumpVector(double teleportPropability) {
         double[] matrixData = new double[this.nodeCount];
         for (int i = 0; i < this.nodeCount; i++) {
-            matrixData[i] = teleportPropability / this.nodeCount;
+            matrixData[i] = teleportPropability ;
         }
 
         return MatrixUtils.createRealVector(matrixData);
@@ -51,7 +51,7 @@ public class PageRankCalculator {
     private RealVector getInitialRankVector(int count) {
         double[] initialRankVector = new double[count];
         for (int i = 0; i < count; i++) {
-            initialRankVector[i] = (double) 1/count;
+            initialRankVector[i] = (double) 1 / this.nodeCount;
         }
 
         return new ArrayRealVector(initialRankVector);
